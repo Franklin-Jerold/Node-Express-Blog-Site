@@ -1,0 +1,40 @@
+npm install -g nodemon
+
+npm install loadash 
+
+npm install morgan (third party midleware)
+
+Franklin@mongoose
+
+app.get('/all-blogs', (req, res) => {
+    Blog.find()
+        .then((result) => {
+            res.send(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+app.get('/single-blogs', (req, res) => {
+    Blog.findById('63b599e77779e34fb30d84ee')
+        .then((result) => {
+            res.send(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+})
+
+app.get('/add-blog', (req, res) => {
+    const blog = new Blog({
+        title: 'new blog5',
+        snippet: 'About my new blog',
+        body: 'more about my new blog'
+    });
+    blog.save()
+        .then((result) => {
+            res.send(result)
+        })
+        .catch((err) => console.log(err));
+});
